@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  src: url('/fonts/NotoSansDevanagari.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+  font-family: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom scrollbars for mobile web experience */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Explicit standard colors for report container to ensure 100% html2canvas compatibility */
+#report-paper {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+#report-paper h1,
+#report-paper h2,
+#report-paper p,
+#report-paper span,
+#report-paper div {
+  color: #111827;
+}
+
+#report-paper table {
+  background-color: #ffffff !important;
+  border-color: #111827 !important;
+}
+
+#report-paper th,
+#report-paper td {
+  border-color: #111827 !important;
+  color: #111827 !important;
+}
+
+#report-paper th {
+  background-color: #f1f5f9 !important;
+}
+
+#report-paper tfoot tr {
+  background-color: #f1f5f9 !important;
+}
+
+/* 
+ * Strict @media print rules:
+ * Only #report-paper is visible during print, hiding headers, buttons, navigation, and app chrome.
+ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 6mm;
+  }
+
+  /* Reset body and background */
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Hide app header, bottom nav, all action buttons, sticky filters, modals */
+  header,
+  nav,
+  button,
+  .no-print,
+  .sticky,
+  .fixed,
+  input,
+  select,
+  [role="dialog"] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Hide everything inside body except the print container */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Make only the report paper sheet and its children visible */
+  #report-paper,
+  #report-paper * {
+    visibility: visible !important;
+  }
+
+  /* Ensure #report-paper occupies the full printed page without shadows or overflows */
+  #report-paper {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 4mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+
+  /* Ensure table borders and crisp font rendering during print */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  th, td {
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Daily Pigmy & Collection Manager",
+  "description": "Private offline-first daily cash collection ledger with Devanagari PDF reports, PIN lock, customer management, and encrypted backup.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
